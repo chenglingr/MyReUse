@@ -1,0 +1,28 @@
+﻿@model  MyReUse.Models.Employee 
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>getString</title>
+</head>
+<body>
+    <div> @Model.FirstName @Model.LastName @Model.Salary
+
+    @if (@Model.Salary > 2800)
+    {
+
+      <p style="background-color:green">@Model.Salary</p>
+    }
+    else
+    {
+        <p style="background-color:red">@Model.Salary</p>
+    }
+
+    </div>
+</body>
+</html>

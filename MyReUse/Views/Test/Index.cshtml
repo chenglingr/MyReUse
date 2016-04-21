@@ -1,0 +1,38 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+        @{ 
+            // MyReUse.Models.Employee ee = (MyReUse.Models.Employee)ViewData["Employee"];
+            MyReUse.Models.Employee ee = (MyReUse.Models.Employee)ViewBag.Employee;
+        }
+        hello world @ee.FirstName @ee.LastName<br />
+      
+           工资： @ee.Salary
+
+        @if (ee.Salary > 2800)
+        {
+
+            <p style="background-color:green">@ee.Salary</p>
+        }
+        else
+        {
+            <p style="background-color:red">@ee.Salary</p>
+        }
+     
+    </div>
+    http://www.cnblogs.com/powertoolsteam/p/MVC_two.html<br/>
+    http://www.jb51.net/article/73205.htm<br/>
+    http://www.cnblogs.com/wlb/archive/2009/12/10/1621475.html
+</body>
+</html>

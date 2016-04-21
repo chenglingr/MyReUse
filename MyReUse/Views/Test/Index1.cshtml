@@ -1,0 +1,23 @@
+﻿@model MyReUse.ViewModels.EmployeeViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index1</title>
+</head>
+<body>
+    <div> hello @Model.UserName
+      <br />
+              @Model.EmployeeName <br />
+        <span style="background-color:@Model.SalaryColor">
+            @Model.Salary
+         
+        </span>
+    </div>
+</body>
+</html>
