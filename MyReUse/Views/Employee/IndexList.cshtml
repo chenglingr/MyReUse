@@ -1,0 +1,28 @@
+﻿@using MyReUse.ViewModels
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>IndexList</title>
+</head>
+<body>
+    <a href ="/Employee/AddNew">
+        Add New</a>
+        <div>
+            @foreach (EmployeeViewModel item in Model.Employees)
+            {
+                <p>
+                    @item.EmployeeName
+                    <span style="background-color:@item.SalaryColor">@item.Salary</span>
+                </p>
+
+            }
+
+        </div>
+</body>
+</html>

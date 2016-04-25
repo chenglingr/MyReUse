@@ -8,7 +8,7 @@ using MyReUse.ViewModels;
 using MyReUse.BusinessLayer;
 namespace MyReUse.Controllers
 {
-    public class TestController : Controller
+    public class EmployeeController : Controller
     {
         // GET: Test
         public ActionResult Index()
@@ -22,7 +22,10 @@ namespace MyReUse.Controllers
             ViewBag.Employee = ee;
             return View();
         }
-
+        public ActionResult AddNew()
+       {
+            return View("CreateEmployee");
+       }
         public ActionResult IndexList()
         {
            EmployeeListViewModel employeeListViewModel = new EmployeeListViewModel();
@@ -37,7 +40,7 @@ namespace MyReUse.Controllers
                         EmployeeViewModel empViewModel = new EmployeeViewModel();
                        empViewModel.EmployeeName = emp.FirstName + " " + emp.LastName;
                          empViewModel.Salary = emp.Salary.ToString("C");
-                        if (emp.Salary > 15000)
+                        if (emp.Salary > 5000)
                            {
                                  empViewModel.SalaryColor = "yellow";
                           }
@@ -48,7 +51,7 @@ namespace MyReUse.Controllers
                         empViewModels.Add(empViewModel);
                     }
                  employeeListViewModel.Employees = empViewModels;
-                employeeListViewModel.UserName = "Admin";
+                 employeeListViewModel.UserName = "Admin";
                  return View(employeeListViewModel);
 
            
@@ -95,6 +98,21 @@ namespace MyReUse.Controllers
         [NonAction]
         public string getNoAction() //非action
         { return "testtest"; }
-    }
+
+        public ActionResult SaveEmployee(Employee e, string BtnSubmit)
+       {
+            switch (BtnSubmit)
+            {
+                case "Save Employee":
+                    EmployeeBusinessLayer empBal = new EmployeeBusinessLayer();
+                    empBal.SaveEmployee(e);
+                    return RedirectToAction("IndexList");
+                case "Cancel":
+                    return RedirectToAction("IndexList");
+             }
+             return new EmptyResult();
+         
+         }
+     }
   
 }
