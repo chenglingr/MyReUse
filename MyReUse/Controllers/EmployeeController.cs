@@ -104,9 +104,15 @@ namespace MyReUse.Controllers
             switch (BtnSubmit)
             {
                 case "Save Employee":
-                    EmployeeBusinessLayer empBal = new EmployeeBusinessLayer();
-                    empBal.SaveEmployee(e);
-                    return RedirectToAction("IndexList");
+                    if (ModelState.IsValid)
+                    {
+                        EmployeeBusinessLayer empBal = new EmployeeBusinessLayer();
+                        empBal.SaveEmployee(e);
+                        return RedirectToAction("IndexList");
+                    }else
+                    {
+                        return View("CreateEmployee");
+                    }
                 case "Cancel":
                     return RedirectToAction("IndexList");
              }
