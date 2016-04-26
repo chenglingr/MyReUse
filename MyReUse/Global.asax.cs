@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-
+using System.Data.Entity;
 namespace MyReUse
 {
     public class MvcApplication : System.Web.HttpApplication
@@ -16,6 +16,7 @@ namespace MyReUse
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+           Database.SetInitializer(new DropCreateDatabaseIfModelChanges<MyReUse.DataAccessLayer.ReUseDAL>());
         }
     }
 }
