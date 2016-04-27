@@ -24,7 +24,7 @@ namespace MyReUse.Controllers
         }
         public ActionResult AddNew()
        {
-            return View("CreateEmployee");
+            return View("CreateEmployee", new CreateEmployeeViewModel());
        }
         public ActionResult IndexList()
         {
@@ -39,7 +39,7 @@ namespace MyReUse.Controllers
                     {
                         EmployeeViewModel empViewModel = new EmployeeViewModel();
                        empViewModel.EmployeeName = emp.FirstName + " " + emp.LastName;
-                         empViewModel.Salary = emp.Salary.ToString("C");
+                         empViewModel.Salary = emp.Salary.ToString();
                         if (emp.Salary > 5000)
                            {
                                  empViewModel.SalaryColor = "yellow";
@@ -64,7 +64,7 @@ namespace MyReUse.Controllers
             emp.Salary = 888;
             EmployeeViewModel vmEmp = new EmployeeViewModel();
             vmEmp.EmployeeName = emp.FirstName + " " + emp.LastName;
-             vmEmp.Salary = emp.Salary.ToString("C");
+             vmEmp.Salary = emp.Salary.ToString();
               if (emp.Salary > 15000)
                     {
                        vmEmp.SalaryColor = "yellow";
@@ -111,7 +111,18 @@ namespace MyReUse.Controllers
                         return RedirectToAction("IndexList");
                     }else
                     {
-                        return View("CreateEmployee");
+                        CreateEmployeeViewModel vm = new CreateEmployeeViewModel();
+                        vm.FirstName = e.FirstName;
+                        vm.LastName = e.LastName;
+                        if (e.Salary.HasValue)
+                         {
+                              vm.Salary = e.Salary.ToString();
+                         }
+                         else
+                        {
+                            vm.Salary = ModelState["Salary"].Value.AttemptedValue;
+                        }
+                        return View("CreateEmployee",vm);
                     }
                 case "Cancel":
                     return RedirectToAction("IndexList");

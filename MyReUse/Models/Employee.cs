@@ -9,11 +9,12 @@ namespace MyReUse.Models
     {
         [Key]
         public int EmployeeId { get; set; }
-        [Required(ErrorMessage = "Enter First Name")]
+        //    [Required(ErrorMessage = "Enter First Name")]
+        [MyReUse.Validation.FirstNameValidation]
         public string FirstName { get; set; }
         [StringLength(5, ErrorMessage = "Last Name length should not be greater than 5")]
         public string LastName { get; set; }
-        public double Salary { get; set; }
+        public double ? Salary { get; set; }
         public override string ToString()
         {
             return FirstName+" "+LastName+" "+Salary;
