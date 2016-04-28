@@ -33,13 +33,21 @@ namespace MyReUse.BusinessLayer
             return  reUseDal.Employees.ToList();
           
      }
-        public Employee SaveEmployee(Employee e)
+     public Employee SaveEmployee(Employee e)
      {
             ReUseDAL reUseDal = new ReUseDAL();
             reUseDal.Employees.Add(e);
             reUseDal.SaveChanges();
             return e;
      }
+        public bool IsValidUser(UserDetails u)
+        {
+            if (u.UserName == "Admin" && u.Password == "Admin")
+            {
+                return true;
+            }
+            return false;
+        }
 
 }
 }

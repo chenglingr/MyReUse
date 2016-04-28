@@ -1,4 +1,5 @@
 ﻿@using MyReUse.ViewModels
+@model EmployeeListViewModel
 @{
     Layout = null;
 }
@@ -12,6 +13,7 @@
 <body>
     <a href ="/Employee/AddNew">
         Add New</a>
+    <div style="text-align:right"> Hello, @Model.UserName <a href="/Authentication/Logout">Logout</a></div>
         <div>
             @foreach (EmployeeViewModel item in Model.Employees)
             {
@@ -21,7 +23,11 @@
                 </p>
 
             }
-
+            @{
+                 Html.RenderPartial("Footer",Model.FooterData);
+             }
         </div>
+   
+     
 </body>
 </html>

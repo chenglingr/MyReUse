@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using MyReUse.Models;
 using MyReUse.ViewModels;
 using MyReUse.BusinessLayer;
+
+
 namespace MyReUse.Controllers
 {
     public class EmployeeController : Controller
@@ -22,6 +24,7 @@ namespace MyReUse.Controllers
             ViewBag.Employee = ee;
             return View();
         }
+        [Authorize]
         public ActionResult AddNew()
        {
             return View("CreateEmployee", new CreateEmployeeViewModel());
@@ -29,8 +32,10 @@ namespace MyReUse.Controllers
         public ActionResult IndexList()
         {
            EmployeeListViewModel employeeListViewModel = new EmployeeListViewModel();
-              
-           EmployeeBusinessLayer empBal = new EmployeeBusinessLayer();
+            employeeListViewModel.UserName = User.Identity.Name;
+            employeeListViewModel.FooterData.CompanyName = "StepByStepSchools";//Can be set to dynamic value
+            employeeListViewModel.FooterData.Year = DateTime.Now.Year.ToString();
+            EmployeeBusinessLayer empBal = new EmployeeBusinessLayer();
            List<Employee> employees = empBal.GetEmployees();
            
            List<EmployeeViewModel> empViewModels = new List<EmployeeViewModel>();
@@ -56,6 +61,7 @@ namespace MyReUse.Controllers
 
            
         }
+       
         public ActionResult Index1()
         {
             Employee emp = new Employee();
