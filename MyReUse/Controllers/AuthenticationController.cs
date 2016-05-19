@@ -18,16 +18,35 @@ namespace MyReUse.Controllers
             if (ModelState.IsValid)
             {
                 EmployeeBusinessLayer bal = new EmployeeBusinessLayer();
-                if (bal.IsValidUser(u))
-                {
-                    FormsAuthentication.SetAuthCookie(u.UserName, false);
-                    return RedirectToAction("AddNew", "Employee");
-                }
+                //if (bal.IsValidUser(u))
+                //{
+                //    FormsAuthentication.SetAuthCookie(u.UserName, false);
+                //    return RedirectToAction("AddNew", "Employee");
+                //}
+                //else
+                //{
+                //    ModelState.AddModelError("CredentialError", "Invalid Username or Password");
+                //    return View("Login");
+                //}
+
+                UserStatus status = bal.GetUserValidity(u);
+                bool IsAdmin = false;
+                if (status == UserStatus.AuthenticatedAdmin)
+                    {
+                           IsAdmin = true;
+                    }
+                else if (status == UserStatus.AuthentucatedUser)
+                    {
+                          IsAdmin = false;
+                    }
                 else
-                {
-                    ModelState.AddModelError("CredentialError", "Invalid Username or Password");
-                    return View("Login");
-                }
+                   {
+                         ModelState.AddModelError("CredentialError", "Invalid Username or Password");
+                         return View("Login");
+                   }
+                FormsAuthentication.SetAuthCookie(u.UserName, false);
+                Session["IsAdmin"] = IsAdmin;
+                return RedirectToAction("IndexList", "Employee");
             }
             else
             {

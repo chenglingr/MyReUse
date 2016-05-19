@@ -3,21 +3,24 @@
 @* -@model MyReUse.Models.Employee!--> *@
 
 @{
-    Layout = null;
+       Layout = "~/Views/Shared/MyLayout.cshtml";      
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>CreateEmployee</title>
-    <script src="~/Scripts/js/Validations.js"></script>
+@section TitleSection{
+     CreateEmployee
+    }
+@section HeaderSection{
+    
+    <script src="~/Scripts/Validations.js"></script>
+   
     <script>
-      
-    </script>
-</head>
-<body>
+     function ResetForm() {
+          document.getElementById('TxtFName').value = "";
+           document.getElementById('TxtLName').value = "";
+          document.getElementById('TxtSalary').value = "";
+      }
+  </script>
+}
+@section ContentBody{ 
   <div>
       <form action="/Employee/SaveEmployee" method="post">
            First Name: <input type="text" id="TxtFName" name="FirstName" value="@Model.FirstName"  />@Html.ValidationMessage("FirstName")<br />
@@ -28,5 +31,4 @@
           <input type="submit" name="BtnSubmit" value="Cancel" />
       </form>
   </div>
-</body>
-</html>
+}
