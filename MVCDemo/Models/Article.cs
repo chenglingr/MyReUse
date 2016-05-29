@@ -12,7 +12,7 @@ namespace MVCDemo.Models
         public int ID { get; set; }
         [DisplayName("主题"),Required(ErrorMessage = "请输入标题")]
         public string topic { get; set; }
-        [DisplayName("内容"), Required(ErrorMessage = "请输入内容"）]
+        [DisplayName("内容"), Required(ErrorMessage = "请输入内容")]
         public string content { get; set; }
         [DisplayName("创建时间")]
         public DateTime createTime { get; set; }

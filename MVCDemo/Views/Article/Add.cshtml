@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+@section TitleSection{
+    Add
+}
+@section HeaderSection{
+    <link href="~/Ueditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="~/Ueditor/umeditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="~/Ueditor/umeditor.min.js"></script>
+    <script type="text/javascript" src="~/Ueditor/lang/zh-cn/zh-cn.js"></script>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+}
+@section ContentBody{
+    <div class="body-content">
+        <script type="text/plain" id="myEditor" style="width:1000px;height:340px;">
+            <p>这里我可以写一些输入提示</p>
+        </script>
+        <script type="text/javascript">
+            //实例化编辑器
+            var um = UM.getEditor('myEditor');
+        </script>
+    </div>
+}
+
