@@ -6,12 +6,16 @@ using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using System.Configuration;
+using System.Web.Security;
+
 namespace MVCDemo.Controllers
 {
     public class AccountController : Controller
     {
         private DAL.AccountContext db = new DAL.AccountContext();
         // GET: Account
+       //  [Authorize]
+        [MVCDemo.Filter.HeaderFilter]
         public ActionResult Index(string search)
         {
             List<Models.Account> Accounts;
@@ -24,6 +28,7 @@ namespace MVCDemo.Controllers
                 Accounts = db.Accounts.ToList();
             }
             ViewModels.AccountListViewModel aLVM = new ViewModels.AccountListViewModel();
+          
             aLVM.Accounts = Accounts;
             return View(aLVM);
         }
@@ -53,6 +58,7 @@ namespace MVCDemo.Controllers
             if (acc.Count() > 0) {
                 // 
                 ViewBag.LoginState = "成功";
+                FormsAuthentication.SetAuthCookie(account.Email, false);//新增
                 return RedirectToAction("Index");
              //   RedirectToAction(“ActionName”);  
              //   RedirectToAction(“ActionName”, "ControllerName");  
@@ -60,6 +66,7 @@ namespace MVCDemo.Controllers
             else
             { 
                 ViewBag.LoginState = "失败";
+                ModelState.AddModelError("CredentialError", "Invalid Username or Password");//新增
                 return View();
             }
           
@@ -79,10 +86,16 @@ namespace MVCDemo.Controllers
             return RedirectToAction("Index");//跳转
           
         }
+        [Filter.HeaderFilter]
         public ActionResult Detail(int? id)
         {
             Models.Account acc = db.Accounts.Find(id);
-            return View(acc);
+            ViewModels.AccountViewModel avm = new ViewModels.AccountViewModel();
+            avm.ID = acc.ID;
+            avm.Address = acc.Address;
+            avm.Articles = acc.Articles;
+            avm.Email = acc.Email;
+            return View(avm);
         }
         //修改用户
         public ActionResult Edit(int? id)
@@ -113,6 +126,11 @@ namespace MVCDemo.Controllers
             db.Accounts.Remove(sysUser);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login");
         }
     }
 }

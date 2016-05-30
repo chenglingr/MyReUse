@@ -5,8 +5,8 @@ using System.Web;
 
 namespace MVCDemo.ViewModels
 {
-    public class AccountListViewModel:BaseViewModel
+    public class BaseViewModel
     {
-        public List<Models.Account> Accounts { get; set; }
+        public string UserName { get; set; }
     }
 }

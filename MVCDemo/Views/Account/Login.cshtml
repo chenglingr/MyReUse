@@ -14,7 +14,8 @@
 </head>
 <body>
     <div>
-        @ViewBag.LoginState
+        @ViewBag.LoginState <br />
+        @Html.ValidationMessage("CredentialError", new { style = "color:red;" })
     </div>
     <div class="width50">
         <form action="/Account/Login" method="post" class="form-horizontal">
