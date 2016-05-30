@@ -7,6 +7,6 @@ namespace MVCDemo.ViewModels
 {
     public class BaseViewModel
     {
-        public string UserName { get; set; }
+        public string UserName {get; set; }
     }
 }
