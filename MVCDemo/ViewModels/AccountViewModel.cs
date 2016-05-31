@@ -5,7 +5,7 @@ using System.Web;
 
 namespace MVCDemo.ViewModels
 {
-    public class AccountViewModel:BaseViewModel
+    public class AccountViewModel
     {
         public int ID { get; set; }
         public string Email { get; set; }

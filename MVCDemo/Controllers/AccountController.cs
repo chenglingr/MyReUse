@@ -15,7 +15,7 @@ namespace MVCDemo.Controllers
         private DAL.AccountContext db = new DAL.AccountContext();
         // GET: Account
        //  [Authorize]
-        [MVCDemo.Filter.HeaderFilter]
+       
         public ActionResult Index(string search)
         {
             List<Models.Account> Accounts;
@@ -58,7 +58,8 @@ namespace MVCDemo.Controllers
             if (acc.Count() > 0) {
                 // 
                 ViewBag.LoginState = "成功";
-                FormsAuthentication.SetAuthCookie(account.Email, false);//新增
+                FormsAuthentication.SetAuthCookie(account.Email, false);//新增=acc
+                Session["UserID"] = acc.First().ID;//新增
                 return RedirectToAction("Index");
              //   RedirectToAction(“ActionName”);  
              //   RedirectToAction(“ActionName”, "ControllerName");  
@@ -71,6 +72,7 @@ namespace MVCDemo.Controllers
             }
           
         }
+        [Authorize]
         public ActionResult Register()
         {
             return View();
@@ -86,16 +88,12 @@ namespace MVCDemo.Controllers
             return RedirectToAction("Index");//跳转
           
         }
-        [Filter.HeaderFilter]
+       
         public ActionResult Detail(int? id)
         {
             Models.Account acc = db.Accounts.Find(id);
-            ViewModels.AccountViewModel avm = new ViewModels.AccountViewModel();
-            avm.ID = acc.ID;
-            avm.Address = acc.Address;
-            avm.Articles = acc.Articles;
-            avm.Email = acc.Email;
-            return View(avm);
+           
+            return View(acc);
         }
         //修改用户
         public ActionResult Edit(int? id)
@@ -130,6 +128,7 @@ namespace MVCDemo.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
+            Session["UserID"] = null;//新增
             return RedirectToAction("Login");
         }
     }

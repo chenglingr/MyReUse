@@ -4,24 +4,26 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MVCDemo.Controllers
+namespace test.Controllers
 {
-    public class ArticleController : Controller
+    public class HomeController : Controller
     {
-        // GET: Article
         public ActionResult Index()
         {
             return View();
         }
-       // [Authorize(Users = "admin@qq.com")] 限定用户
-        [Authorize]
-        public ActionResult Add()
+
+        public ActionResult About()
         {
+            ViewBag.Message = "Your application description page.";
+
             return View();
         }
-        [HttpPost]
-        public ActionResult Add(string topic)
+
+        public ActionResult Contact()
         {
+            ViewBag.Message = "Your contact page.";
+
             return View();
         }
     }
