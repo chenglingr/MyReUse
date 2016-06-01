@@ -11,6 +11,7 @@ namespace MVCDemo.DAL
     {
         public AccountContext():base("AccountContext") { }
         public DbSet<MVCDemo.Models.Account> Accounts { get; set; }
+        public DbSet<MVCDemo.Models.Article> Articles { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
           
