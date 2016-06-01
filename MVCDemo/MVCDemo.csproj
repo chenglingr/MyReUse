@@ -147,7 +147,7 @@
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\AccountViewModel.cs" />
+    <Content Include="mvc文档\学习网址.txt" />
     <Content Include="Ueditor\net\Uploader.cs" />
     <Compile Include="ViewModels\AccountListViewModel.cs" />
   </ItemGroup>
@@ -161,6 +161,18 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="mvc文档\MVC系列-1.MVC入门.doc" />
+    <Content Include="mvc文档\MVC系列-10.用户验证-导航条改造.doc" />
+    <Content Include="mvc文档\MVC系列-11.两表联合-发表文章.doc" />
+    <Content Include="mvc文档\MVC系列-12.项目的重新规划.doc" />
+    <Content Include="mvc文档\MVC系列-2.数据处理-登陆.doc" />
+    <Content Include="mvc文档\MVC系列-3.数据显示.doc" />
+    <Content Include="mvc文档\MVC系列-4.布局页.doc" />
+    <Content Include="mvc文档\MVC系列-5.详细信息.doc" />
+    <Content Include="mvc文档\MVC系列-6.注册页面.doc" />
+    <Content Include="mvc文档\MVC系列-7.更新.doc" />
+    <Content Include="mvc文档\MVC系列-8.删除.doc" />
+    <Content Include="mvc文档\MVC系列-9.查询和分页.doc" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -261,16 +273,22 @@
     <Content Include="Views\Account\Index2.cshtml" />
     <Content Include="Views\Shared\MyLayout.cshtml" />
     <Content Include="Views\Shared\Footer.cshtml" />
-    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Index3.cshtml" />
     <Content Include="Views\Account\Detail.cshtml" />
     <Content Include="Views\Account\Register1.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\Account\Delete.cshtml" />
-    <Content Include="Views\Account\Index1.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Article\Add.cshtml" />
     <Content Include="Ueditor\net\getContent.ashx" />
     <Content Include="Ueditor\net\imageUp.ashx" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_LayoutUser.cshtml" />
+    <Content Include="Views\Shared\_AddAdminLink.cshtml" />
+    <Content Include="Views\Article\Index.cshtml" />
+    <Content Include="Views\Article\IndexList.cshtml" />
+    <Content Include="Views\Article\MyIndexList.cshtml" />
+    <Content Include="Views\Article\ArticleList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

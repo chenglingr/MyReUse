@@ -15,7 +15,21 @@ namespace MVCDemo.Controllers
         {
             return View();
         }
-       // [Authorize(Users = "admin@qq.com")] 限定用户
+        
+        public ActionResult IndexList()
+        {
+            return View();
+        }
+        public ActionResult MyIndexList()
+        {
+            return View();
+        }
+        [Authorize(Users = "admin@qq.com")]
+        public ActionResult ArticleList()
+        {
+            return View();
+        }
+        // [Authorize(Users = "admin@qq.com")] 限定用户
         [Authorize]
         public ActionResult Add()
         {
@@ -38,8 +52,8 @@ namespace MVCDemo.Controllers
             { 
                 art.AccoutID = int.Parse(Session["UserID"].ToString());//获取作者id
                 db.Articles.Add(art);//增加
-                db.SaveChanges();//保存
-                return RedirectToAction("Index"); ;
+                db.SaveChanges();//保y
+                return RedirectToAction("MyIndexList"); 
             }
         }
         /*

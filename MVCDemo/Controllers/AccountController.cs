@@ -14,9 +14,19 @@ namespace MVCDemo.Controllers
     {
         private DAL.AccountContext db = new DAL.AccountContext();
         // GET: Account
-       //  [Authorize]
-       
-        public ActionResult Index(string search)
+        //  [Authorize]
+        public ActionResult GetAddAdminLink()
+        {
+            if (User.Identity.Name=="admin@qq.com")//如果是管理员账户
+            {
+                 return PartialView("_AddAdminLink");//导入局部视图
+            }
+            else
+             {
+                return new EmptyResult();
+             }
+       }
+        public ActionResult Index3(string search)
         {
             List<Models.Account> Accounts;
             if (!string.IsNullOrEmpty(search))
@@ -32,7 +42,8 @@ namespace MVCDemo.Controllers
             aLVM.Accounts = Accounts;
             return View(aLVM);
         }
-        public ActionResult Index1(int? page)
+        [Authorize(Users = "admin@qq.com")]
+        public ActionResult Index(int? page)
         {
             //用户列表
             var acc = db.Accounts;
@@ -60,7 +71,7 @@ namespace MVCDemo.Controllers
                 ViewBag.LoginState = "成功";
                 FormsAuthentication.SetAuthCookie(account.Email, false);//新增=acc
                 Session["UserID"] = acc.First().ID;//新增
-                return RedirectToAction("Index");
+                return RedirectToAction("Detail");
              //   RedirectToAction(“ActionName”);  
              //   RedirectToAction(“ActionName”, "ControllerName");  
             }
@@ -72,7 +83,7 @@ namespace MVCDemo.Controllers
             }
           
         }
-        [Authorize]
+       
         public ActionResult Register()
         {
             return View();
@@ -91,6 +102,12 @@ namespace MVCDemo.Controllers
        
         public ActionResult Detail(int? id)
         {
+            if(!id.HasValue){
+                if (Session["UserID"] != null)
+                {
+                    id = int.Parse(Session["UserID"].ToString());
+                }
+            }
             Models.Account acc = db.Accounts.Find(id);
            
             return View(acc);

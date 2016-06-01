@@ -1,19 +1,17 @@
 ﻿
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+@section TitleSection{
+   Login
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Login</title>
+@section HeaderSection{
+    @*注释：这里放引入js css的代码  没有可省略本部分*@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" />
-</head>
-<body>
-    <div>
+}
+@section ContentBody{
         @ViewBag.LoginState <br />
         @Html.ValidationMessage("CredentialError", new { style = "color:red;" })
     </div>
@@ -47,8 +45,5 @@
             </div>
         </form>
     </div>
-     @{
-         Html.RenderPartial("Footer");
-      }
-</body>
-</html>
+   
+}
