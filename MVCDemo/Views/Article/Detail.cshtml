@@ -1,0 +1,46 @@
+﻿@model MVCDemo.Models.Article
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+@section TitleSection{
+    detail
+}
+@section HeaderSection{
+    }
+@section ContentBody{
+    <div>
+        <h4>Article</h4>
+        <hr />
+        @{
+            if (@Model != null)
+            {
+                <dl class="dl-horizontal">
+                    <dt>            @Html.DisplayNameFor(model => model.topic)        </dt>
+                    <dd>            @Html.DisplayFor(model => model.topic)        </dd>
+
+                    <dt>            @Html.DisplayNameFor(model => model.createTime)        </dt>
+                    <dd>            @Html.DisplayFor(model => model.createTime)        </dd>
+
+                    <dt>            @Html.DisplayNameFor(model => model.clickCount)        </dt>
+                    <dd>            @Html.DisplayFor(model => model.clickCount)        </dd>
+
+                    <dt>            @Html.DisplayNameFor(model => model.lastClickTime)        </dt>
+                    <dd>            @Html.DisplayFor(model => model.lastClickTime)        </dd>
+
+                    <dt>            作者        </dt>
+                    <dd>            @Html.DisplayFor(model => model.Account.Email)        </dd>
+
+                    <dt>            @Html.DisplayNameFor(model => model.content)        </dt>
+                    <dd>            @Html.Raw(@Model.content)        </dd>
+                </dl>
+            }
+            else
+            {
+                <p>此贴不存在</p>
+            }
+        }
+    </div>
+    <p>     @Html.ActionLink("Back to List", "IndexList")</p>
+}

@@ -21,7 +21,7 @@ namespace MVCDemo.Models
         [DisplayName("最后点击时间")]
         public DateTime lastClickTime { get; set; }
         [DisplayName("用户编号")]
-        public int?AccoutID { get; set;} 
+        public int?AccountID { get; set;} //外键--表名+键名 ^-^单词不要错了 ^.^少个字母害我改两天
         public virtual Account Account { get; set; }
     }
 }
