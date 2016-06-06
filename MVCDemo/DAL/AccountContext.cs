@@ -9,7 +9,7 @@ namespace MVCDemo.DAL
 {
     public class AccountContext:DbContext
     {
-        public AccountContext():base("AccountContext") { }
+        public  AccountContext():base("AccountContext") { }
         public DbSet<MVCDemo.Models.Account> Accounts { get; set; }
         public DbSet<MVCDemo.Models.Article> Articles { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
