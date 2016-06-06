@@ -16,7 +16,7 @@ namespace MVCDemo.DAL
             };
             accounts.ForEach(s => context.Accounts.Add(s));
             context.SaveChanges();
-           
+
         }
     }
 }

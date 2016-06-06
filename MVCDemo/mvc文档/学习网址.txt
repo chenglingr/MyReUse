@@ -1,2 +1,96 @@
 http://www.cnblogs.com/powertoolsteam/p/MVC_one.html
 http://www.cnblogs.com/liyanwei/p/43f3dc2484d4d082e89ca86710c4d1c2.html
+
+MVC中Html.ActionLink的用法
+MVC提供了自动构造重写地址的方法——Html.ActionLink,该方法有五个重载,用起来非常灵活和方便,下面对这些方法一一介绍
+
+ 
+
+重载一、Html.ActionLink("linkText","actionName")
+
+该重载的第一个参数是该链接要显示的文字,第二个参数是对应的控制器的方法视图,默认控制器为当前页面的控制器
+
+例如:
+
+Html.ActionLink("跳转到About页面", 
+"About");
+
+解析为:
+
+<a 
+href="/Home/About">跳转到About页面</a>
+
+ 
+
+ 
+
+重载二、 Html.ActionLink("linkText","actionName","controlName")
+
+该重载比第一个重载多了一个参数。第一个参数:要显示的文本,第二个参数:视图名, 
+第三个参数:控制器名
+
+例如:
+
+Html.ActionLink("跳转到别的controler中", "Index", 
+"Home");
+
+解析为:
+
+<a 
+href="/Home/Index">跳转到别的controler中</a>
+
+ 
+
+ 
+
+重载三、 
+Html.ActionLik("linkText","actionName",routeValues)
+
+第一个参数:要显示的文本,第二个参数:视图名, 
+第三个参数:url中的参数
+
+例如:
+
+Html.ActionLink("跳转到About页面", "About", new { id = "1", 
+name = "x" })
+
+解析为:
+
+<a 
+href="/Home/About/1?name=x">跳转到About页面</a>
+
+ 
+
+ 
+
+重载四、 
+Html.ActionLink("linkText","actionName",routeValues,htmlAttributes)
+
+第一个参数:要显示的文本,第二个参数:视图名, 
+第三个参数:url中的参数,第四个参数:设置标签属性
+
+例如:
+
+<%=Html.ActionLink("跳转到About页面", "About", new { id = 
+"1", name = "x" }, new { disabled = "disabled",@class = 
+"about"})%>
+
+解析为:
+
+<a class="about" 
+disabled="disabled" 
+href="/Home/About/1?name=x">跳转到About页面</a>
+
+注意:设置标签的class属性时,应在class前加上@,因为class是关键字。
+
+ 
+
+ 
+
+重载五、 
+
+Html.ActionLink("linkText","actionName","controlName",routeValues,htmlAttributes)
+
+该重载包含了上面提到的所有参数类型
+@Html.ActionLink("文章", "ArticleList","Article",new { id = item.ID },"")
+                      
